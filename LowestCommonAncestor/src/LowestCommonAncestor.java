@@ -289,4 +289,8 @@ public class LowestCommonAncestor<Key extends Comparable<Key>, Value> {
 
 // I used this BST code last year in CS2010 Assignment 3
 
+	public Key LCA(Node node, Key key1, Key key2) {
+			return null;
+	}
+	
 }
