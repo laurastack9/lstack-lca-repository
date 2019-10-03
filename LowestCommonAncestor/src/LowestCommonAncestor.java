@@ -21,8 +21,27 @@ public class LowestCommonAncestor<Key extends Comparable<Key>, Value> {
 
 // I used this BST constructor code last year in CS2010 Assignment 3 - used Sedgewick and Wayne book as a help source
 
+// Used source: www.geeksforgeeks.org
+// To help write the function
 	public Key LCA(Node node, Key key1, Key key2) {
-			return null;
+		if (node == null)
+            return null;
+		if (node.key == key1) {
+			return node.key;
+		}
+		if (node.key == key2) {
+			return node.key;
+		}
+		int compare1 = node.key.compareTo(key1);
+		int compare2 = node.key.compareTo(key2);
+		
+        if (compare1 >= 0 && compare2 >= 0)
+            return LCA(node.left, key1, key2);
+  
+        if (compare1 <= 0 && compare2 <= 0)
+            return LCA(node.right, key1, key2);
+  
+        return node.key;
 	}
 	
 }
