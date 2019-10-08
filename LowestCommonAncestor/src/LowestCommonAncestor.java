@@ -165,7 +165,7 @@ public class LowestCommonAncestor<Key extends Comparable<Key>, Value> {
 			 
 		 }
 		
-// I used this Binary Tree constructor code last year in CS2010 Assignment 3 - used Sedgewick and Wayne book as a help source
+// I used this Binary Tree code last year in CS2010 Assignment 3 - used Sedgewick and Wayne book as a help source
 
 // Used source: www.geeksforgeeks.org
 // To help write the function
