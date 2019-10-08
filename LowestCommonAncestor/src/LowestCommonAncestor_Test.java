@@ -10,18 +10,16 @@ class LowestCommonAncestor_Test {
 	public void testLCA() {
 		
 		LowestCommonAncestor<Integer, Integer> BST = new LowestCommonAncestor<Integer, Integer>();
-		BST.put(9, 9);   //        _9_
-		BST.put(8, 8);   //      /     \
-		BST.put(2, 2);   //    _2_      8
+		BST.put(8, 8);   //        _8_
+		BST.put(9, 9);   //      /     \
+		BST.put(5, 5);   //    _5_      9
 		BST.put(3, 3);   //  /     \
-		BST.put(5, 5);   // 3       6
-		BST.put(6, 6);   //  \     /
-		BST.put(4, 4);   //   5   4
-		BST.put(1, 1);   //        \
-						 //         1
+		BST.put(4, 4);   // 3       7
+		BST.put(7, 7);   //  \     /
+		BST.put(6, 6);   //   4   6    
 		
-		assertSame("Testing LCA left side", 2, BST.LCA(BST.root,5,6));
-		assertSame("Testing LCA right side", 9, BST.LCA(BST.root,8,2));
+		assertSame("Testing LCA left side", 5, BST.LCA(BST.root,4,7));
+		assertSame("Testing LCA right side", 8, BST.LCA(BST.root,5,9));
 	}
 	
 	@Test 
