@@ -22,6 +22,8 @@ class LowestCommonAncestor_Test {
 		
 		assertEquals("Testing LCA left side", 2, LCA.LCA(LCA.root,5,6));
 		assertEquals("Testing LCA right side", 9, LCA.LCA(LCA.root,8,2));
+		assertEquals("Testing LCA left side", 3, LCA.LCA(LCA.root, 5,6).toString());
+		assertEquals("Testing LCA right side", 7, LCA.LCA(LCA.root, 8,2).toString());
 	}
 	
 	@Test 
