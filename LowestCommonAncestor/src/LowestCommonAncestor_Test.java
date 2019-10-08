@@ -20,10 +20,8 @@ class LowestCommonAncestor_Test {
 		BST.put(1, 1);   //        \
 						 //         1
 		
-		assertEquals("Testing LCA left side", 2, BST.LCA(BST.root,5,6));
-		assertEquals("Testing LCA right side", 9, BST.LCA(BST.root,8,2));
-		assertEquals("Testing LCA left side", 3, BST.LCA(BST.root, 5,6).toString());
-		assertEquals("Testing LCA right side", 7, BST.LCA(BST.root, 8,2).toString());
+		assertSame("Testing LCA left side", 2, BST.LCA(BST.root,5,6));
+		assertSame("Testing LCA right side", 9, BST.LCA(BST.root,8,2));
 	}
 	
 	@Test 
