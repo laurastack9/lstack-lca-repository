@@ -10,6 +10,10 @@ class LowestCommonAncestor_Test {
 	public void testLCA() {
 		
 		LowestCommonAncestor<Integer, Integer> BST = new LowestCommonAncestor<Integer, Integer>();
+		
+		assertSame("Testing LCA for null root", null, BST.LCA(BST.root,  1,  2));
+		
+		
 		BST.put(8, 8);   //        _8_
 		BST.put(9, 9);   //      /     \
 		BST.put(5, 5);   //    _5_      9
