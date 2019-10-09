@@ -34,16 +34,5 @@ class LowestCommonAncestor_Test {
 		//will be written at a later date
 	}
 	
-	@Test 
-	public void testContains() {
-		
-		//add test
-	}
-	
-	@Test 
-	public void testHeight() {
-		
-		//add test
-	}
 	
 }
