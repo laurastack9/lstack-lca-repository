@@ -28,6 +28,12 @@ class LowestCommonAncestor_Test {
 		assertSame("Testing LCA where LCA is one of the nodes.", 5, BST.LCA(BST.root, 3,5));
 	}
 	
+	@Test
+	public void testDAGLCA() {
+		//test to be written here for testing LCA for a direct acyclic graph
+		//will be written at a later date
+	}
+	
 	@Test 
 	public void testContains() {
 		
