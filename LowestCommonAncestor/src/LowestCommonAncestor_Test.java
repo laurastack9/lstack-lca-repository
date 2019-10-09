@@ -24,6 +24,8 @@ class LowestCommonAncestor_Test {
 		
 		assertSame("Testing LCA left side", 5, BST.LCA(BST.root,4,7));
 		assertSame("Testing LCA right side", 8, BST.LCA(BST.root,5,9));
+		assertSame("Testing LCA where LCA is one of the nodes", 8, BST.LCA(BST.root, 7,8));
+		assertSame("Testing LCA where LCA is one of the nodes", 5, BST.LCA(BST.root, 3,5));
 	}
 	
 	@Test 

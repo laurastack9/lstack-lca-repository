@@ -169,14 +169,14 @@ public class LowestCommonAncestor<Key extends Comparable<Key>, Value> {
 
 // Used source: www.geeksforgeeks.org
 // To help write the function
-	public Node LCA(Node node, Key key1, Key key2) {
+	public Key LCA(Node node, Key key1, Key key2) {
 		if (node == null)
             return null;
 		if (node == key1) {
-			return node;
+			return node.key;
 		}
 		if (node.key == key2) {
-			return node;
+			return node.key;
 		}
 		int compare1 = node.key.compareTo(key1);
 		int compare2 = node.key.compareTo(key2);
@@ -187,7 +187,7 @@ public class LowestCommonAncestor<Key extends Comparable<Key>, Value> {
         if (compare1 <= 0 && compare2 <= 0)
             return LCA(node.right, key1, key2);
   
-        return node;
+        return node.key;
 	}
 	
 }
