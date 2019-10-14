@@ -11,5 +11,19 @@ public class DAG <Value>{
 		}
 		
 		private Node[] nodeList = new DAG.Node[0];
+		
+		
+		public int size() { 
+			return nodeList.length;  //returns number of nodes the DAG
+		}
+		
+		public boolean isEmpty() { //method to check if the DAG is empty
+			if (size()==0) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
 	}
 }
