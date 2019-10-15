@@ -44,7 +44,7 @@ public class DAG <Value>{
 			Node to = retrieveNodefromValue(toVal);
 
 			if (fromVal != null) {
-				from.successors = extendArray(from.successors); //will create extendArray
+				from.successors = extendArray(from.successors); 
 				from.successors[from.successors.length-1] = n;
 				if (from.val == null) {
 					// If 'from' Node is not already in the graph? To be updated
@@ -56,11 +56,18 @@ public class DAG <Value>{
 			}
 		}
 
+		// To extend the array 
+		@SuppressWarnings("unchecked")
+		public Node[] extendArray(Node[] originalArray) {
+			Node[] newArray = new DAG.Node[originalArray.length+1];
+			System.arraycopy(originalArray, 0, newArray, 0, originalArray.length);
+			return newArray;
+		}
+
 	}
 
 
 
 
 
-}
 }
