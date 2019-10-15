@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class DAG <Value>{
 
@@ -59,6 +60,28 @@ public class DAG <Value>{
 				}
 			}
 			addNodeToNodeList(n);
+		}
+		
+		public void deleteNode(Node n) {
+			int i;
+			for(i=0; i<n.successors.length; i++) {
+				n.successors[i] = null;
+			}
+
+			for(i=0; i<nodeList.length; i++) {
+				if (Arrays.asList(nodeList[i].successors).contains(n) == true) {
+					for (int j=0; j<nodeList[i].successors.length; j++) {
+						if (nodeList[i].successors[j] == n) {
+							nodeList[i].successors[j] = null;
+						}
+					}
+				}
+			}
+			for (int k=0; k<nodeList.length; k++) {
+				if (nodeList[k] == n) {
+					nodeList[k] = null;
+				}
+			}		
 		}
 
 		public void addNodeToNodeList (Node n) {
