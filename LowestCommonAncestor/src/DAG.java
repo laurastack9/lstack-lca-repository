@@ -47,15 +47,25 @@ public class DAG <Value>{
 				from.successors = extendArray(from.successors); 
 				from.successors[from.successors.length-1] = n;
 				if (from.val == null) {
-					// If 'from' Node is not already in the graph? To be updated
+					addNodeToNodeList(from); 
 				}
 			}
 
 			if (toVal != null) {
-				//where does this get connected to?
+				n.successors = extendArray(n.successors);
+				n.successors[n.successors.length-1] = to;
+				if (to.val == null) {
+					addNodeToNodeList(to);
+				}
 			}
+			addNodeToNodeList(n);
 		}
 
+		public void addNodeToNodeList (Node n) {
+			nodeList = extendArray(nodeList);
+			nodeList[nodeList.length-1] = n;
+		}
+		
 		// To extend the array 
 		@SuppressWarnings("unchecked")
 		public Node[] extendArray(Node[] originalArray) {
