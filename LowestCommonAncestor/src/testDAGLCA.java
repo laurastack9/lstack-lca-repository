@@ -69,4 +69,79 @@ class testDAGLCA {
 	}
 
 
+	//Future Tests for LCA function
+	@Test
+	public void testLCA(){
+		DAG lca = new DAG(10);
+
+		//--------2---5----7--
+		//---0--1-------6----8
+		//--------3---4-------
+		lca.addEdge(0, 1);
+		lca.addEdge(1, 2);
+		lca.addEdge(1, 3);
+		lca.addEdge(2, 5);
+		lca.addEdge(3, 4);
+		lca.addEdge(4, 6);
+		lca.addEdge(5, 6);
+		lca.addEdge(6, 8);
+		lca.addEdge(5, 7);
+		lca.addEdge(7, 8);
+		lca.addEdge(8, 9);
+
+		assertEquals("", 1, lca.findLCA(5, 4));
+		assertEquals("", 7, lca.findLCA(8, 7));
+		assertEquals("", 6, lca.findLCA(6, 8));
+		assertEquals("Special case where both parameters are same vertex", 2, lca.findLCA(2,2));
+	}
+
+	@Test
+	public void testLCAForNoCommonAncestors(){
+		DAG lca2 = new DAG(11);
+		//-----1----5----
+		//---0-|---/-----
+		//-----2--3---4--
+		lca2.addEdge(0, 1);
+		lca2.addEdge(0, 2);
+		lca2.addEdge(1, 2);
+		lca2.addEdge(2, 3);
+		lca2.addEdge(3, 4);
+		lca2.addEdge(1, 5);
+		lca2.addEdge(3, 5);
+
+		//Check it works ok
+		assertEquals("", 0, lca2.findLCA(3, 1));
+		assertEquals("", 2, lca2.findLCA(3, 2));
+		assertEquals("", 3, lca2.findLCA(4, 5));
+
+		//Check for no common ancestors
+		assertEquals("", -1, lca2.findLCA(7, 3));
+	}
+
+	//tests unique case in which graph is not acyclic, just a digraph
+	@Test
+	public void testLCAForNonDAG(){
+		DAG lca3 = new DAG(11);
+		//---0
+		//--|-\
+		//---\-\
+		//----2--3
+
+		//0 - 2 - 3 make a cycle
+
+		lca3.addEdge(0, 1);
+		lca3.addEdge(0, 2);
+		lca3.addEdge(2, 3);
+		lca3.addEdge(3, 0);
+		lca3.addEdge(3, 4);
+
+		//Should return -1 if graph is not a DAG
+		assertEquals("", -1, lca3.findLCA(2, 3));
+		assertEquals("", -1, lca3.findLCA(3, 4));
+		assertEquals("", -1, lca3.findLCA(1, 2));
+		assertEquals("", -1, lca3.findLCA(0, 3));
+		assertEquals("", -1, lca3.findLCA(1, 3));
+
+	}
+
 }
