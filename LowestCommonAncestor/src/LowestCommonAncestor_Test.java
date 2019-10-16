@@ -7,22 +7,22 @@ import org.junit.jupiter.api.Test;
 
 class LowestCommonAncestor_Test {
 
-	
+
 	@Test
 	public void testDAGLCA() {
 		//test to be written here for testing LCA for a DAG
 		//to be updated
 	}
-	
-	
+
+
 	@Test
 	public void testLCA() {
-		
+
 		LowestCommonAncestor<Integer, Integer> BST = new LowestCommonAncestor<Integer, Integer>();
-		
+
 		assertSame("Testing LCA for null root", null, BST.LCA(BST.root,  1,  2));
-		
-		
+
+
 		BST.put(8, 8);   //        _8_
 		BST.put(9, 9);   //      /     \
 		BST.put(5, 5);   //    _5_      9
@@ -30,13 +30,13 @@ class LowestCommonAncestor_Test {
 		BST.put(4, 4);   // 3       7
 		BST.put(7, 7);   //  \     /
 		BST.put(6, 6);   //   4   6    
-		
+
 		assertSame("Testing LCA left side", 5, BST.LCA(BST.root,4,7));
 		assertSame("Testing LCA right side", 8, BST.LCA(BST.root,5,9));
 		assertSame("Testing LCA where LCA is one of the nodes.", 8, BST.LCA(BST.root, 7,8));
 		assertSame("Testing LCA where LCA is one of the nodes.", 5, BST.LCA(BST.root, 3,5));
 	}
-	
+
 	@Test
 	public void testPut() {
 		LowestCommonAncestor<Integer, Integer> LCA = new LowestCommonAncestor<Integer, Integer>();
@@ -47,7 +47,7 @@ class LowestCommonAncestor_Test {
 
 		assertEquals("Putting nodes", "(()10(()15()))", LCA.printKeysInOrder());
 	}
-	
+
 	@Test
 	public void testDelete() {
 		LowestCommonAncestor<Integer, Integer> LCA = new LowestCommonAncestor<Integer, Integer>();
@@ -81,7 +81,7 @@ class LowestCommonAncestor_Test {
 		assertEquals("Deleting node with two children",
 				"(((()1())2(()4(()5())))7())", LCA.printKeysInOrder());
 	}
-	
+
 	@Test
 	public void testGet() {
 		LowestCommonAncestor<Integer, Integer> LCA = new LowestCommonAncestor<Integer, Integer>();
@@ -97,31 +97,17 @@ class LowestCommonAncestor_Test {
 		assertEquals("Testing right then left", "15", LCA.get(9).toString());
 		assertEquals("Testing root", "1", LCA.get(10).toString());
 	}
-	
 
-	@Test
-	public void testDAGEmpty() {
-		DAG<Integer> dag = new DAG<Integer>();
-		assertEquals("Checking isEmpty() on empty dag.", true, dag.isEmpty());
-		dag.put(1, null, null);
-		
-		System.out.println(dag.size());
-		assertEquals("Checking isEmpty() on empty dag.", false, dag.isEmpty());
-	}
-	
+
 	@Test 
 	public void testContains() {
-		
+
 		LowestCommonAncestor<Integer, Integer> LCA = new LowestCommonAncestor<Integer, Integer>();
 		assertEquals("Testing contains", false, LCA.contains(1));
 		LCA.put(7, 7); 
 		assertEquals("Testing contains", true, LCA.contains(7));
 	}
-	
-	@Test 
-	public void testHeight() {
-		
-		//add test
-	}
-	
+
+
+
 }
