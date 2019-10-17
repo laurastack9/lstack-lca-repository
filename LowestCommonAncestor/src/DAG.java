@@ -86,6 +86,32 @@ public class DAG {
 	//Returns the adjacent vertices to v
 	public Iterable<Integer> adj(int v)
 	{ return adj[v]; }
+	
+	public int findLCA(int v, int w){
+		findCycle(0);
+		if(hasCycle){
+			//Graph is not a DAG
+			return -1;
+		}
+		DAG backwards = reverse();
+		ArrayList<Integer> arr1 = backwards.BFS(v);
+		ArrayList<Integer> arr2 = backwards.BFS(w);
+		ArrayList<Integer> commonAncestors = new ArrayList<Integer>();
+		boolean found = false;
+		for(int i = 0; i<arr1.size(); i++){
+				for(int t = 0; t<arr2.size(); t++){		
+					if(arr1.get(i)==arr2.get(t)){
+						commonAncestors.add(arr1.get(i));	
+						found = true;
+					}
+			}
+		}
+
+		if(found)
+			return commonAncestors.get(0);
+		else
+			return -1;
+	}
 
 	//to find the LCA, will have to traverse the graph backwards as the lca comes before the two nodes
 	public DAG reverse() {
