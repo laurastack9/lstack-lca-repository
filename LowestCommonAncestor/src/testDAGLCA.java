@@ -24,14 +24,13 @@ class testDAGLCA {
 		assertEquals("",ans, test.adj(4).toString());
 	}
 
-
 	@Test
 	public void testAddEdge(){
 		DAG test4 = new DAG(5);
 		test4.addEdge(3, 9);
 		test4.addEdge(0, 1);
 
-		//Doesnt add an edge
+		//Doesn't add an edge
 		test4.addEdge(-2, -5);	
 		assertEquals("Testing edge count is 1", 1, test4.E());
 
@@ -41,7 +40,7 @@ class testDAGLCA {
 	}
 
 	@Test
-	public void testinDegree(){
+	public void testInDegree(){
 		DAG test5 = new DAG(5);
 		assertEquals("", -1, test5.indegree(-3));
 	}
@@ -76,6 +75,39 @@ class testDAGLCA {
 		acyclic.findCycle(0);
 		//No Cycle,return false
 		assertFalse(acyclic.hasCycle());
+	}
+	
+	@Test 
+	public void testV()
+	{
+		DAG graph = new DAG(6);
+		assertEquals(6, graph.V());
+	}
+	
+	@Test
+	public void testE(){
+		
+		DAG graph = new DAG(5);
+		
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 3);
+		
+		assertEquals(3, graph.E());
+	}
+	
+	@Test
+	public void testAdj()
+	{
+		DAG graph = new DAG(5);
+		
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 3);
+		graph.addEdge(4, 3);
+		
+		String adj = "[4]";
+		assertEquals(adj, graph.adj(2).toString());
 	}
 
 
@@ -134,13 +166,7 @@ class testDAGLCA {
 	@Test
 	public void testLCAForNonDAG(){
 		DAG lca3 = new DAG(11);
-		//---0
-		//--|-\
-		//---\-\
-		//----2--3
-
-		//0 - 2 - 3 make a cycle
-
+	
 		lca3.addEdge(0, 1);
 		lca3.addEdge(0, 2);
 		lca3.addEdge(2, 3);
@@ -155,12 +181,24 @@ class testDAGLCA {
 		assertEquals("", -1, lca3.findLCA(1, 3));
 
 	}
-	
 
 	@Test
-	public void testLCAforEmpty() {
+	public void testLCAforEmptyDAG() {
 		DAG lca = new DAG(10);
 		assertEquals("Testing LCA is -1", -1, lca.findLCA(1, 2));
+	}
+	
+	@Test
+	public void testLCAForSameVertex()
+	{
+		DAG graph = new DAG(10);
+		
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 3);
+		graph.addEdge(1, 3);
+		
+		assertEquals(3, graph.findLCA(3, 3));
+		
 	}
 
 }
