@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 class testDAGLCA {
 
+
+	//tests check DAG class works, used some code from CS2010
 	@Test
 	public void testForDirectedGraph(){
 		DAG test = new DAG(10);
@@ -27,7 +29,15 @@ class testDAGLCA {
 	public void testAddEdge(){
 		DAG test4 = new DAG(5);
 		test4.addEdge(3, 9);
+		test4.addEdge(0, 1);
+
+		//Doesnt add an edge
 		test4.addEdge(-2, -5);	
+		assertEquals("Testing edge count is 1", 1, test4.E());
+
+		test4.addEdge(1, 2);
+
+		assertEquals("Testing edge count is 2", 2, test4.E());
 	}
 
 	@Test
@@ -89,9 +99,9 @@ class testDAGLCA {
 		lca.addEdge(7, 8);
 		lca.addEdge(8, 9);
 
-		assertEquals("", 1, lca.findLCA(5, 4));
-		assertEquals("", 7, lca.findLCA(8, 7));
-		assertEquals("", 6, lca.findLCA(6, 8));
+		assertEquals("Finding LCA for 4 and 5", 1, lca.findLCA(5, 4));
+		assertEquals("Finding LCA for 7 and 8", 7, lca.findLCA(8, 7));
+		assertEquals("Finding LCA for 6 and 8", 6, lca.findLCA(6, 8));
 		assertEquals("Special case where both parameters are same vertex", 2, lca.findLCA(2,2));
 	}
 
@@ -109,13 +119,15 @@ class testDAGLCA {
 		lca2.addEdge(1, 5);
 		lca2.addEdge(3, 5);
 
-		//Check it works ok
+		//Check that it works 
 		assertEquals("", 0, lca2.findLCA(3, 1));
+		assertEquals("Finding LCA when there is no LCA", 0, lca2.findLCA(3, 1));
 		assertEquals("", 2, lca2.findLCA(3, 2));
 		assertEquals("", 3, lca2.findLCA(4, 5));
 
 		//Check for no common ancestors
 		assertEquals("", -1, lca2.findLCA(7, 3));
+		assertEquals("Finding LCA when one node doesnt exist", -1, lca2.findLCA(7, 3));
 	}
 
 	//tests unique case in which graph is not acyclic, just a digraph
@@ -142,6 +154,13 @@ class testDAGLCA {
 		assertEquals("", -1, lca3.findLCA(0, 3));
 		assertEquals("", -1, lca3.findLCA(1, 3));
 
+	}
+	
+
+	@Test
+	public void testLCAforEmpty() {
+		DAG lca = new DAG(10);
+		assertEquals("Testing LCA is -1", -1, lca.findLCA(1, 2));
 	}
 
 }

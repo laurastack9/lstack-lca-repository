@@ -86,7 +86,7 @@ public class DAG {
 	//Returns the adjacent vertices to v
 	public Iterable<Integer> adj(int v)
 	{ return adj[v]; }
-	
+
 	public int findLCA(int v, int w){
 		findCycle(0);
 		if(hasCycle){
@@ -94,19 +94,24 @@ public class DAG {
 			return -1;
 		}
 		DAG backwards = reverse();
-		ArrayList<Integer> arr1 = backwards.BFS(v);
-		ArrayList<Integer> arr2 = backwards.BFS(w);
+
+		//Locate the two points in the graph
+		ArrayList<Integer> vPath = backwards.BFS(v);
+		ArrayList<Integer> wPath = backwards.BFS(w);
 		ArrayList<Integer> commonAncestors = new ArrayList<Integer>();
 		boolean found = false;
-		for(int i = 0; i<arr1.size(); i++){
-				for(int t = 0; t<arr2.size(); t++){		
-					if(arr1.get(i)==arr2.get(t)){
-						commonAncestors.add(arr1.get(i));	
-						found = true;
-					}
+		//cycle through the BFS paths, adding all common ancestors to the arrayList
+		//return the first one found, as it is the closest to the nodes.
+		for(int i = 0; i<vPath.size(); i++){
+			for(int t = 0; t<wPath.size(); t++){		
+				if(vPath.get(i)==wPath.get(t)){
+					commonAncestors.add(vPath.get(i));
+					found = true;
+				}
 			}
 		}
 
+		//return -1 if no lca is found
 		if(found)
 			return commonAncestors.get(0);
 		else
@@ -127,7 +132,6 @@ public class DAG {
 
 	public ArrayList<Integer> BFS(int s)
 	{
-		// Mark all the vertices as not visited(By default set as false)
 		boolean visited[] = new boolean[V];
 
 		LinkedList<Integer> queue = new LinkedList<Integer>();
@@ -142,9 +146,6 @@ public class DAG {
 			// Dequeue a vertex from queue and print it
 			s = queue.poll();           
 			order.add(s);
-			// Get all adjacent vertices of the dequeued vertex s
-			// If a adjacent has not been visited, then mark it
-			// visited and enqueue it
 			Iterator<Integer> i = adj[s].listIterator();
 			while (i.hasNext())
 			{
