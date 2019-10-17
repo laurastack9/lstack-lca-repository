@@ -2,11 +2,12 @@ import java.util.NoSuchElementException;
 import java.util.*;
 import java.lang.*;
 
+
 public class LowestCommonAncestor<Key extends Comparable<Key>, Value> {
 
 	public LinkedHashSet<Key> keySet = new LinkedHashSet<Key>();	// all nodes in graph
 	private LinkedHashSet<Key> orphanSet = new LinkedHashSet<Key>();	// all nodes with no requirement nodes
-	
+
 	Node root;
 	
 	/**
@@ -26,11 +27,12 @@ public class LowestCommonAncestor<Key extends Comparable<Key>, Value> {
 	}
 	
 	//Constructor for DAG
-			public Object DirAcycGraph () {
-				Object directAcyclicGraph = new Object();
-				return directAcyclicGraph;
-			}
-	
+
+		public Object DirAcycGraph () {
+			Object directAcyclicGraph = new Object();
+			return directAcyclicGraph;
+		}
+
 	/**
 	 *  Insert key-value pair into BST.
 	 *  If key already exists, update with new value.
