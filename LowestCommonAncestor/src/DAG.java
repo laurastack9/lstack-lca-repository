@@ -16,7 +16,6 @@ public class DAG {
 	private int[] edgeTo;      // edgeTo[v] = last edge on shortest s->v path
 	private int[] distTo;      // distTo[v] = length of shortest s->v path
 
-
 	public DAG(int V)
 	{
 		if (V < 0) throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
@@ -140,7 +139,6 @@ public class DAG {
 		visited[s]=true;
 		queue.add(s);
 
-
 		while (queue.size() != 0)
 		{
 			// Dequeue a vertex from queue and print it
@@ -157,13 +155,10 @@ public class DAG {
 				}
 			}
 		}
-
 		return order;
-
 	}
 
 	public boolean hasCycle() {
-
 		return hasCycle;
 	}
 
