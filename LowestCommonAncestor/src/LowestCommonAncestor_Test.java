@@ -7,21 +7,12 @@ import org.junit.jupiter.api.Test;
 
 class LowestCommonAncestor_Test {
 
-
-	@Test
-	public void testDAGLCA() {
-		//test to be written here for testing LCA for a DAG
-		//to be updated
-	}
-
-
 	@Test
 	public void testLCA() {
 
 		LowestCommonAncestor<Integer, Integer> BST = new LowestCommonAncestor<Integer, Integer>();
 
 		assertSame("Testing LCA for null root", null, BST.LCA(BST.root,  1,  2));
-
 
 		BST.put(8, 8);   //        _8_
 		BST.put(9, 9);   //      /     \
@@ -36,6 +27,36 @@ class LowestCommonAncestor_Test {
 		assertSame("Testing LCA where LCA is one of the nodes.", 8, BST.LCA(BST.root, 7,8));
 		assertSame("Testing LCA where LCA is one of the nodes.", 5, BST.LCA(BST.root, 3,5));
 	}
+	
+	
+	@Test
+	public void testIsEmpty() 
+	{
+		LowestCommonAncestor<Integer, Integer> test = new LowestCommonAncestor<Integer, Integer>();
+		boolean isEmpty = test.isEmpty();
+		assertEquals(isEmpty, true);
+		test.put(1, 2);
+		test.put(2, 4);
+		test.put(3, 6);
+		test.put(4, 8);
+		isEmpty = test.isEmpty();
+		assertEquals(isEmpty, false);
+
+	}
+	
+
+	@Test
+	public void testSize(){
+		LowestCommonAncestor<Integer, Integer> test = new LowestCommonAncestor<Integer, Integer>();
+		assertEquals(test.size(), 0);
+		test.put(4, 1);
+		assertEquals(test.size(), 1);
+		test.put(2, 4);
+		test.put(3, 6);
+		assertEquals(test.size(), 3);
+		test.put(4, 8);
+		assertEquals(test.size(), 3); //Size remains same as element already exists
+	}
 
 	@Test
 	public void testPut() {
@@ -48,6 +69,7 @@ class LowestCommonAncestor_Test {
 		assertEquals("Putting nodes", "(()10(()15()))", LCA.printKeysInOrder());
 	}
 
+	
 	@Test
 	public void testDelete() {
 		LowestCommonAncestor<Integer, Integer> LCA = new LowestCommonAncestor<Integer, Integer>();
@@ -81,6 +103,7 @@ class LowestCommonAncestor_Test {
 		assertEquals("Deleting node with two children",
 				"(((()1())2(()4(()5())))7())", LCA.printKeysInOrder());
 	}
+	
 
 	@Test
 	public void testGet() {
@@ -97,7 +120,7 @@ class LowestCommonAncestor_Test {
 		assertEquals("Testing right then left", "15", LCA.get(9).toString());
 		assertEquals("Testing root", "1", LCA.get(10).toString());
 	}
-
+	
 
 	@Test 
 	public void testContains() {
@@ -107,7 +130,5 @@ class LowestCommonAncestor_Test {
 		LCA.put(7, 7); 
 		assertEquals("Testing contains", true, LCA.contains(7));
 	}
-
-
-
+	
 }
